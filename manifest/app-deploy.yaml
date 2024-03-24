@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: calculator-deployment
+  name: app-deployment
 spec:
   replicas: 2 # You can adjust the number of replicas as needed
   selector:
