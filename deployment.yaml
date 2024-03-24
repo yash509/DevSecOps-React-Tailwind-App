@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 2  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: pizza-react-app
+  template:
+    metadata:
+      labels:
+        app: pizza-react-app
+    spec:
+      containers:
+      - name: pizza-react-app
+        image: yash5090/pizza-react-app:latest
+        ports:
+        - containerPort: 3000
