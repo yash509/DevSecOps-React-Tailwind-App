@@ -6,14 +6,14 @@ spec:
   replicas: 2  # Number of desired replicas
   selector:
     matchLabels:
-      app: pizza-react-app
+      app: pz-react-app
   template:
     metadata:
       labels:
-        app: pizza-react-app
+        app: pz-react-app
     spec:
       containers:
-      - name: pizza-react-app
-        image: yash5090/pizza-react-app:latest
+      - name: pz-react-app
+        image: yash5090/pz-react-app:latest
         ports:
         - containerPort: 3000
