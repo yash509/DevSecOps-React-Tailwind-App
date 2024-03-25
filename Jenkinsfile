@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Checkout from Git') {                        
             steps {                                       
-                git branch: 'main', url: 'https://github.com/yash509/DevSecOps-Python-Flask-App.git'
+                git branch: 'main', url: 'https://github.com/yash509/DevSecOps-React-Tailwind-App.git'
             }
         }
         stage('Deployments') {
@@ -124,7 +124,7 @@ pipeline {
                 script{
                     //dir('Band Website') {
                         withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                            sh "docker build -t pizza-react-app ." 
+                            sh "docker build -t pz-react-app ." 
                             
                         //}
                     }
@@ -136,7 +136,7 @@ pipeline {
                 script{
                     //dir('Band Website') {
                         withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                            sh "docker tag pizza-react-app yash5090/pizza-react-app:latest " 
+                            sh "docker tag pz-react-app yash5090/pz-react-app:latest " 
                         //}
                     }
                 }
@@ -144,7 +144,7 @@ pipeline {
         }
         stage('Docker Image Scanning') { 
             steps { 
-                sh "trivy image --format table -o trivy-image-report.html yash5090/py-calc-app:latest" 
+                sh "trivy image --format table -o trivy-image-report.html yash5090/pz-react-app:latest" 
             } 
         } 
         stage("Image Push to DockerHub") {
@@ -152,7 +152,7 @@ pipeline {
                 script{
                     //dir('Band Website') {
                         withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                            sh "docker push yash5090/pizza-react-app:latest "
+                            sh "docker push yash5090/pz-react-app:latest "
                         //}
                     }
                 }
@@ -162,9 +162,9 @@ pipeline {
             steps {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh 'docker-scout quickview yash5090/pizza-react-app:latest'
-                       sh 'docker-scout cves yash5090/pizza-react-app:latest'
-                       sh 'docker-scout recommendations yash5090/pizza-react-app:latest'
+                       sh 'docker-scout quickview yash5090/pz-react-app:latest'
+                       sh 'docker-scout cves yash5090/pz-react-app:latest'
+                       sh 'docker-scout recommendations yash5090/pz-react-app:latest'
                    }
                 }   
             }
@@ -172,7 +172,7 @@ pipeline {
         stage("TRIVY"){
             steps{
                 //dir('Band Website') {
-                    sh "trivy image yash5090/pizza-react-app:latest > trivyimage.txt"   
+                    sh "trivy image yash5090/pz-react-app:latest > trivyimage.txt"   
                 //}
             }
         }
@@ -204,7 +204,7 @@ pipeline {
         stage('Deploy to container'){
             steps{
                 //dir('BMI Calculator (JS)') {
-                    sh 'docker run -d --name pizza-react-app -p 3000:3000 yash5090/pizza-react-app:latest' 
+                    sh 'docker run -d --name pz-react-app -p 3000:3000 yash5090/pz-react-app:latest' 
                 //}
             }
         }
